@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabela - Design Engineer Case Study</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #030712;
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
+      --brand-green: #10b981;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(16, 185, 129, 0.05), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.05), transparent 25%);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ======== BADGE ======== */
+    .app-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      color: var(--brand-green);
+    }
+
+    /* ======== HERO SECTION ======== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-size: 30px 30px;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      z-index: -1;
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    }
+
+    /* LOGO ANIMATION IN HERO */
+    .hero-logo-wrapper {
+      position: relative;
+      height: 160px;
+      width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-logo-state {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .hero-tabela {
+      font-weight: 800;
+      font-size: 130px;
+      letter-spacing: -5px;
+      color: #ffffff;
+      /* Animation removed for static export */
+    }
+    .hero-bracket {
+      color: var(--brand-green);
+      margin-left: 16px;
+      /* Animation removed for static export */
+    }
+
+    .hero-goal {
+      display: none; /* Hidden so only 'tabela )' is safely visible in static export */
+    }
+    .hero-line {
+      display: none;
+    }
+
+    .hero-football {
+      display: none;
+    }
+
+    .hero p {
+      font-size: 24px;
+      color: var(--text-sub);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ======== FEATURE SECTIONS ======== */
+    .feature-section {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      min-height: 80vh;
+      padding: 100px 0;
+    }
+
+    .feature-section.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .text-content {
+      flex: 1;
+    }
+
+    .text-content h2 {
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(to bottom right, #ffffff, #9ca3af);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-content p {
+      font-size: 20px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .visual-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* PERFECT 1:1 REAL UI WRAPPER */
+    /* Uygulama 360x520'dir. Bu kutu hiçbir şekilde kırpma veya esnetme yapmaz. */
+    .app-frame {
+      width: 360px;
+      height: 520px;
+      background: #0c0c0c;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8),
+                  0 0 40px rgba(16,185,129,0.1);
+      overflow: hidden;
+      position: relative;
+      /* Hafif ve profesyonel bir 3D eğim */
+      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+      transition: transform 0.5s ease;
+    }
+
+    .app-frame:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-10px);
+    }
+
+    .app-frame iframe {
+      width: 360px;
+      height: 520px;
+      border: none;
+      /* Iframe, kutunun icine %100 oturur, hicbir olceklendirme (scale) hack'i yok! */
+    }
+
+    .video-frame {
+      width: 360px; /* Uygulama genisligi */
+      height: 520px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8),
+                  0 0 40px rgba(245,158,11,0.1);
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(5deg) rotateX(2deg);
+      transition: transform 0.5s ease;
+      background: #0c0c0c;
+    }
+
+    .video-frame:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-10px);
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Cropped frame specifically for removing empty bottom space in Star Video */
+    .video-frame-cropped {
+      height: 145px; /* Tam maç kartı yüksekliği */
+      max-height: 145px;
+      overflow: hidden;
+      display: block;
+    }
+    .video-frame-cropped video {
+      width: 100%;
+      height: auto; /* Aspect ratio koruyarak sayfaya yayılır */
+      object-fit: unset;
+      display: block;
+    }
+
+    /* COMPONENT SNIPPET FRAME FOR HIGHLIGHTS */
+    .snippet-frame {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 30px 60px -15px rgba(0,0,0,0.8),
+                  0 0 40px rgba(245,158,11,0.1);
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(4deg) rotateX(2deg);
+      transition: transform 0.5s ease;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .snippet-frame:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(-8px);
+    }
+    .snippet-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      /* Görseli kutuya harika oturtur */
+    }
+
+    /* Glows behind visual frames */
+    .glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: var(--brand-green);
+      filter: blur(100px);
+      opacity: 0.15;
+      z-index: -1;
+      border-radius: 50%;
+    }
+    .glow-orange { background: #f59e0b; }
+    .glow-blue { background: #3b82f6; }
+
+
+    /* ANIMATION KEYFRAMES for HERO LOGO */
+    @keyframes shootBall {
+      0% { transform: translateX(-180px) rotate(0deg); opacity: 0; }
+      10% { transform: translateX(-140px) rotate(90deg); opacity: 1; }
+      25% { transform: translateX(80px) rotate(360deg); opacity: 1; } 
+      28% { transform: translateX(100px) rotate(400deg); opacity: 0; } 
+      100% { transform: translateX(100px); opacity: 0; }
+    }
+    @keyframes flexBracket {
+      0%, 20% { transform: scaleX(1); }
+      25% { transform: scaleX(1.8) translateX(2px); } 
+      30%, 100% { transform: scaleX(1); }
+    }
+    @keyframes fadeOutTabela {
+      0%, 25% { opacity: 1; filter: blur(0); }
+      28%, 100% { opacity: 0; filter: blur(4px); transform: scale(0.95); }
+    }
+    @keyframes fadeInGoal {
+      0%, 25% { opacity: 0; transform: scale(0.8); }
+      28% { opacity: 1; transform: scale(1.1); }
+      32% { transform: scale(1); }
+      80% { opacity: 1; transform: scale(1); filter: blur(0); }
+      85%, 100% { opacity: 0; transform: scale(0.9); filter: blur(4px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .feature-section, .feature-section.reverse {
+        flex-direction: column;
+        text-align: center;
+        gap: 60px;
+      }
+      .app-frame, .video-frame {
+        transform: none;
+      }
+      .app-frame:hover, .video-frame:hover {
+        transform: translateY(-10px);
+      }
+      .hero-logo-wrapper {
+        transform: scale(0.7);
+      }
+    }
+
+    /* Behance UI / Project Meta & Footer */
+    .project-meta {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      width: 100%;
+      max-width: 800px;
+    }
+    .meta-item {
+      text-align: left;
+    }
+    .meta-item h4 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .meta-item span {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Design System Section */
+    .design-system-section {
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 0;
+      margin-bottom: 40px;
+    }
+    .ds-container {
+      display: flex;
+      gap: 100px;
+      justify-content: center;
+    }
+    .ds-colors h3, .ds-typography h3 {
+      font-size: 14px;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+    .color-row {
+      display: flex;
+      gap: 16px;
+    }
+    .color-swatch {
+      width: 100px;
+      height: 100px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .color-swatch span:first-child { opacity: 0.6; margin-bottom: 2px;}
+    
+    .typo-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .font-outfit {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 250px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+    .font-inter {
+      font-family: 'Inter', sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 250px;
+    }
+    .font-outfit span, .font-inter span { color: var(--brand-green); }
+
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-logo-wrapper">
+         <div class="hero-logo-state hero-tabela"><span class="t-text">tabela</span><span class="hero-bracket">)</span></div>
+         <div class="hero-football">⚽</div>
+         <div class="hero-logo-state hero-goal"><span class="g-text">GOAL!</span><span class="hero-line">|</span></div>
+      </div>
+      <p>Canlı skor sekmesine mahkum olmaktan kurtul. Arka planda çalışan, sadece ilgilendiğin maçlara odaklanan minimal chrome eklentisi.</p>
+      
+      <div class="project-meta">
+        <div class="meta-item">
+          <h4>Vaka Türü</h4>
+          <span>Micro-SaaS & Eklenti</span>
+        </div>
+        <div class="meta-item">
+          <h4>Rol</h4>
+          <span>Design Engineer</span>
+        </div>
+        <div class="meta-item">
+          <h4>Tech Stack</h4>
+          <span>Vanilla JS, ES6, CSS Animations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design System Flex -->
+  <div class="design-system-section">
+    <div class="container ds-container">
+      <div class="ds-colors">
+        <h3>Renk Paleti</h3>
+        <div class="color-row">
+          <div class="color-swatch" style="background:var(--bg); border: 1px solid #333;"><span>#030712</span><span>Base</span></div>
+          <div class="color-swatch" style="background:#141414;"><span>#141414</span><span>Surface</span></div>
+          <div class="color-swatch" style="background:var(--brand-green); color:#000;"><span>#10B981</span><span>Accent</span></div>
+        </div>
+      </div>
+      <div class="ds-typography">
+        <h3>Tipografi & Marka</h3>
+        <div class="typo-box">
+          <div class="font-outfit">Outfit (Black) <span>Aa</span></div>
+          <div class="font-inter">Inter (Semibold) <span>Aa</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <!-- Feature 1: Static Image Replaced (Per User Request) -->
+    <div class="feature-section">
+      <div class="text-content">
+        <div class="app-badge">Arka Planda</div>
+        <h2>Sekme Açık<br>Kalmasın.</h2>
+        <p>Tarayıcıda sekmeleri açık tutma derdine son. Tabela arkada çalışır, sen işine bakarsın. Sadece bildirim almak istediğin maçları seçmen yeterli.</p>
+      </div>
+      <div class="visual-content">
+        <div class="glow"></div>
+        <div class="app-frame" style="background: transparent;">
+          <!-- LIGHT MODE UI KULLANILDI -->
+          <img src="public/live_app.png" alt="Tabela Light UI" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Static Image for Behance Export -->
+    <div class="feature-section reverse">
+      <div class="text-content">
+        <div class="app-badge">Gereksiz Detay Yok</div>
+        <h2>Yıldızla, Geç.</h2>
+        <p>Reklamlarla dolu, ağırlaşan mobil siteler yok. İlgilendiğin maçı favorilere ekle; gol olduğunda anında haberin olsun.</p>
+      </div>
+      <div class="visual-content">
+        <div class="glow glow-orange"></div>
+        <div class="snippet-frame">
+          <img src="public/star_card_snippet.png" alt="Yıldızla Geç Kartı">
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Static Image for Behance Export -->
+    <div class="feature-section">
+      <div class="text-content">
+        <div class="app-badge">Odak</div>
+        <h2>Sadece Skor.</h2>
+        <p>Göz yormayan karanlık mod, kafa karıştırmayan saf skor takibi. Uygulama indirme yok. Kur ve sadeliği hisset.</p>
+      </div>
+      <div class="visual-content">
+        <div class="glow glow-blue"></div>
+        <div class="app-frame" style="background: transparent;">
+          <img src="public/dark_app_static.png" alt="Tabela Dark Mode App" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

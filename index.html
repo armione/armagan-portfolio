@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Armağan Öztürk — Design Engineer</title>
+  <meta name="description" content="Armağan Öztürk — Design Engineer. Tasarım ve kodu birleştiren kreatif geliştirici. Branding, UI/UX, Web Development, AI Prompt Engineering.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Cursor follower -->
+  <div id="cursor-glow"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">AÖ</a>
+    <div class="nav-links">
+      <a href="#about">Hakkımda</a>
+      <a href="#work">İşlerim</a>
+      <a href="#skills">Yetenekler</a>
+      <a href="#contact">İletişim</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        Projelere Açığım
+      </div>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Menüyü Aç">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">DESIGN ENGINEER</div>
+      <h1 class="hero-title">
+        <span class="line">Armağan</span>
+        <span class="line outline">Öztürk</span>
+      </h1>
+      <p class="hero-subtitle">Tasarım, kod ve AI'ı birleştiren kreatif geliştirici.<br>Markaları görselleştiriyor, fikirleri ürüne dönüştürüyorum.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn-primary">İşlerimi Gör</a>
+        <a href="/armagan_ozturk_cv.pdf" target="_blank" class="btn-outline">CV İndir ↓</a>
+        <a href="#contact" class="btn-outline">İletişime Geç</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number" data-target="15">0</span>+
+          <span class="stat-label">Proje</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="3">0</span>+
+          <span class="stat-label">Yıl Deneyim</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-target="3">0</span>
+          <span class="stat-label">Disiplin</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-logo-wrapper">
+         <div class="hero-logo-state hero-tabela"><span class="t-text">tabela</span><span class="hero-bracket">)</span></div>
+         <div class="hero-football">⚽</div>
+         <div class="hero-logo-state hero-goal"><span class="g-text">GOAL!</span><span class="hero-line">|</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Aşağı Kaydır</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-header">
+      <span class="section-tag">01</span>
+      <h2>Hakkımda</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="about-lead">Ben hem <em>tasarlayan</em> hem <em>kodlayan</em> biriyim.</p>
+        <p>Nişantaşı Üniversitesi Görsel İletişim Tasarımı mezunuyum (%100 burslu). İstanbul Üniversitesi Yönetim Bilişim Sistemleri bölümünde ikinci lisansıma devam ediyorum.</p>
+        <p>San Martin Creative Agency'de stajyer grafik tasarımcı olarak çalıştım. Şu anda İmece Network'te freelance tasarımcı ve sosyal medya uzmanı olarak görev alıyorum. 2020'den beri freelance projeler yürütüyorum.</p>
+        <p>Amacım: <strong>güzel görünen, güzel çalışan ve AI ile ölçeklenen</strong> ürünler yapmak.</p>
+      </div>
+      <div class="about-info">
+        <div class="info-item">
+          <span class="info-label">Konum</span>
+          <span class="info-value">Şişli, İstanbul</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Eğitim</span>
+          <span class="info-value">Nişantaşı Üni. — GİT (Mezun)</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">2. Lisans</span>
+          <span class="info-value">İstanbul Üni. — YBS (Devam)</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Son Deneyim</span>
+          <span class="info-value">San Martin CA — Grafik Tasarım Stajyeri</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Aktif</span>
+          <span class="info-value">İmece Network — Freelance Tasarımcı</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Durum</span>
+          <span class="info-value status-active">Freelance & Full-time Açık</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work">
+    <div class="section-header work-header">
+      <div class="work-header-title">
+        <span class="section-tag">02</span>
+        <h2>Projelerim</h2>
+      </div>
+      <div class="gallery-filters" id="gallery-filters">
+        <button class="filter-btn active" data-filter="all">Tümü</button>
+        <button class="filter-btn" data-filter="Logos & Branding">Kimlik & Logo</button>
+        <button class="filter-btn" data-filter="UI/UX & Web">Web & Arayüz</button>
+        <button class="filter-btn" data-filter="Social Media & PR">Sosyal Medya</button>
+        <button class="filter-btn" data-filter="Mockups & Concepts">Konsept</button>
+      </div>
+    </div>
+    <div class="masonry-grid" id="masonry-grid">
+      <!-- Projects will be injected by JS -->
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-tag">03</span>
+      <h2>Yetenekler</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>Tasarım</h3>
+        <ul>
+          <li><span class="skill-dot"></span>Marka Kimliği & Branding</li>
+          <li><span class="skill-dot"></span>Tipografi & Poster Tasarımı</li>
+          <li><span class="skill-dot"></span>UI/UX Design</li>
+          <li><span class="skill-dot"></span>Ambalaj Tasarımı</li>
+          <li><span class="skill-dot"></span>Sosyal Medya İçerik</li>
+          <li><span class="skill-dot"></span>İllüstrasyon</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Geliştirme</h3>
+        <ul>
+          <li><span class="skill-dot"></span>HTML / CSS / JavaScript</li>
+          <li><span class="skill-dot"></span>React & Next.js</li>
+          <li><span class="skill-dot"></span>Node.js & Express</li>
+          <li><span class="skill-dot"></span>Chrome Extension Geliştirme</li>
+          <li><span class="skill-dot"></span>Puppeteer & Headless Rendering</li>
+          <li><span class="skill-dot"></span>Git & GitHub</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>AI & Otomasyon</h3>
+        <ul>
+          <li><span class="skill-dot"></span>System Prompt Mühendisliği</li>
+          <li><span class="skill-dot"></span>LLM Entegrasyonu (Claude, GPT, Gemini)</li>
+          <li><span class="skill-dot"></span>Programatik Kreatif Pipeline</li>
+          <li><span class="skill-dot"></span>AI Image & Video Generation</li>
+          <li><span class="skill-dot"></span>MCP Server & Skills Kütüphanesi</li>
+          <li><span class="skill-dot"></span>Test-Driven Development</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Araçlar</h3>
+        <ul>
+          <li><span class="skill-dot"></span>Adobe Illustrator & Photoshop</li>
+          <li><span class="skill-dot"></span>Adobe After Effects</li>
+          <li><span class="skill-dot"></span>Figma</li>
+          <li><span class="skill-dot"></span>VS Code & Cursor IDE</li>
+          <li><span class="skill-dot"></span>Supabase & Firebase</li>
+          <li><span class="skill-dot"></span>Vercel & Netlify</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-tag">04</span>
+      <h2>İletişim</h2>
+    </div>
+    <div class="contact-content">
+      <p class="contact-lead">Bir projeniz mi var? Birlikte çalışalım.</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/armaganoztrk/" target="_blank" class="contact-link" id="link-linkedin">
+          <span class="link-icon">in</span>
+          <span>LinkedIn</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.behance.net/armaganozturk" target="_blank" class="contact-link" id="link-behance">
+          <span class="link-icon">Bē</span>
+          <span>Behance</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://instagram.com/itsarmione" target="_blank" class="contact-link" id="link-instagram">
+          <span class="link-icon">ig</span>
+          <span>Instagram</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="mailto:armaganozturk.design@gmail.com" class="contact-link" id="link-email">
+          <span class="link-icon">@</span>
+          <span>Email</span>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Armağan Öztürk — Tasarım & Geliştirme</p>
+  </footer>
+
+  <!-- Project Detail Modal -->
+  <div id="project-modal" class="project-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+      <button id="modal-close" class="modal-close" aria-label="Kapat">&times;</button>
+
+      <div class="modal-header">
+        <span id="modal-category" class="modal-category"></span>
+        <h2 id="modal-title" class="modal-title"></h2>
+        <p id="modal-description" class="modal-description"></p>
+        <div id="modal-tags" class="modal-tags"></div>
+      </div>
+
+      <div class="modal-gallery">
+        <button id="modal-prev" class="modal-nav modal-nav-prev" aria-label="Önceki">‹</button>
+        <div id="modal-image-wrapper" class="modal-image-wrapper">
+          <img id="modal-main-image" src="" alt="Proje Görseli" class="modal-main-image">
+        </div>
+        <button id="modal-next" class="modal-nav modal-nav-next" aria-label="Sonraki">›</button>
+      </div>
+
+      <div class="modal-footer">
+        <span id="modal-counter" class="modal-counter"></span>
+        <div id="modal-thumbnails" class="modal-thumbnails"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-to-top" aria-label="Yukarı Çık">↑</button>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
