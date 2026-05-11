@@ -36,6 +36,8 @@ function renderProjects(filter = 'all') {
     document.querySelectorAll('.project-card.reveal').forEach(el => {
       revealObserver.observe(el);
     });
+    // Re-initialize tilt effect for newly rendered cards
+    initTiltForCards();
   }, 50);
 }
 
@@ -363,8 +365,77 @@ function initThemeSwitcher() {
       const color = e.target.getAttribute('data-color');
       root.style.setProperty('--accent', color);
       root.style.setProperty('--accent-dim', color + '26');
+      
+      const cursorRing = document.querySelector('.cursor-ring');
+      if (cursorRing) cursorRing.style.borderColor = color;
     });
   });
+}
+
+// ===== 3D TILT EFFECT =====
+function initTiltForCards() {
+  const cards = document.querySelectorAll('.project-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      if (window.innerWidth < 768) return; // Disable on mobile
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -6; // Max 6 degrees
+      const rotateY = ((x - centerX) / centerX) * 6;
+      
+      card.style.transition = 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      if (window.innerWidth < 768) return;
+      card.style.transition = 'transform 0.5s ease-out';
+      card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    });
+  });
+}
+
+// ===== SCROLL PROGRESS =====
+function initScrollProgress() {
+  const progressBar = document.getElementById('scroll-progress');
+  if (!progressBar) return;
+  
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    progressBar.style.width = progress + '%';
+  });
+}
+
+// ===== EASTER EGG (CONSOLE) =====
+function initEasterEgg() {
+  const styles = [
+    'font-size: 12px',
+    'font-family: monospace',
+    'background: #0a0a0b',
+    'display: inline-block',
+    'color: #c8ff00',
+    'padding: 10px',
+    'border: 1px dashed #c8ff00',
+    'line-height: 1.5'
+  ].join(';');
+  
+  console.log(`%c
+   █████╗ ██████╗ ███╗   ███╗██╗ ██████╗ ███╗   ██╗███████╗
+  ██╔══██╗██╔══██╗████╗ ████║██║██╔═══██╗████╗  ██║██╔════╝
+  ███████║██████╔╝██╔████╔██║██║██║   ██║██╔██╗ ██║█████╗  
+  ██╔══██║██╔══██╗██║╚██╔╝██║██║██║   ██║██║╚██╗██║██╔══╝  
+  ██║  ██║██║  ██║██║ ╚═╝ ██║██║╚██████╔╝██║ ╚████║███████╗
+  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+  
+  Selam! Kodların arasına kadar girdiğine göre detayları seviyorsun.
+  Gel, birlikte harika ürünler geliştirelim.
+  İletişim: armagan@example.com (veya istediğin e-posta adresi)
+  `, styles);
 }
 
 // ===== INIT =====
@@ -381,4 +452,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initTime();
   initThemeSwitcher();
+  initScrollProgress();
+  initEasterEgg();
 });
