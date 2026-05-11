@@ -186,15 +186,51 @@ function initProjectModal() {
   });
 }
 
-// ===== CURSOR GLOW =====
+// ===== CURSOR GLOW & MAGNETIC EFFECTS =====
 function initCursor() {
   const glow = document.getElementById('cursor-glow');
+  const dot = document.getElementById('cursor-dot');
   if (window.innerWidth < 768) return;
 
+  // Follower logic
   document.addEventListener('mousemove', (e) => {
+    // Dot follows instantly
+    dot.style.left = e.clientX + 'px';
+    dot.style.top = e.clientY + 'px';
+    
+    // Glow follows smoothly
     requestAnimationFrame(() => {
       glow.style.left = e.clientX + 'px';
       glow.style.top = e.clientY + 'px';
+    });
+  });
+
+  // Project Card Hover (Expand cursor)
+  document.addEventListener('mouseover', (e) => {
+    const card = e.target.closest('.project-card');
+    if (card) {
+      dot.classList.add('cursor-view');
+      dot.textContent = 'İNCELE';
+    }
+  });
+  document.addEventListener('mouseout', (e) => {
+    const card = e.target.closest('.project-card');
+    if (card) {
+      dot.classList.remove('cursor-view');
+      dot.textContent = '';
+    }
+  });
+
+  // Magnetic Buttons
+  document.querySelectorAll('.btn-primary, .btn-outline').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = `translate(0px, 0px)`;
     });
   });
 }
