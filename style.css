@@ -59,8 +59,8 @@ button { cursor: pointer; }
   display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--accent);
   background: var(--accent-dim); padding: 0.4rem 1rem; border-radius: 100px; border: 1px solid rgba(200, 255, 0, 0.2);
 }
-.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s ease-in-out infinite; box-shadow: 0 0 10px #22c55e; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px #22c55e; } 50% { opacity: 0.5; transform: scale(0.8); box-shadow: 0 0 0px #22c55e; } }
 
 /* Hamburger */
 .menu-toggle { display: none; background: none; border: none; padding: 6px; flex-direction: column; gap: 5px; }
@@ -94,8 +94,11 @@ button { cursor: pointer; }
 .hero-cta { display: flex; gap: 1rem; margin-bottom: 4rem; animation: fadeInUp 0.8s ease-out 0.4s backwards; }
 .btn-primary { padding: 0.9rem 2rem; background: var(--accent); color: var(--bg); font-weight: 600; font-size: 0.9rem; border-radius: var(--radius-sm); transition: all var(--transition); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200, 255, 0, 0.3); }
-.btn-outline { padding: 0.9rem 2rem; border: 1px solid var(--border); color: var(--text); font-weight: 500; font-size: 0.9rem; border-radius: var(--radius-sm); transition: all var(--transition); }
+.btn-outline { padding: 0.9rem 2rem; border: 1px solid var(--border); color: var(--text); font-weight: 500; font-size: 0.9rem; border-radius: var(--radius-sm); transition: all var(--transition); position: relative; overflow: hidden; }
 .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+.cv-glow-btn { border-color: rgba(200, 255, 0, 0.3); background: rgba(200, 255, 0, 0.05); }
+.cv-glow-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(200,255,0,0.2), transparent); animation: shine 3s infinite; }
+@keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
 .hero-stats { display: flex; gap: 3rem; animation: fadeInUp 0.8s ease-out 0.5s backwards; }
 .stat { font-family: var(--font-display); font-size: 0.9rem; color: var(--text-dim); }
 .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--text); display: block; line-height: 1; }
@@ -119,6 +122,14 @@ button { cursor: pointer; }
 .scroll-indicator { position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.8rem; font-size: 0.75rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
 .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollDown 2s ease-in-out infinite; }
 @keyframes scrollDown { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+
+/* ===== MARQUEE ===== */
+.tech-marquee-wrapper { position: relative; width: 100%; overflow: hidden; margin-top: -3rem; margin-bottom: 4rem; z-index: 10; transform: rotate(-2deg) scale(1.05); }
+.tech-marquee { display: flex; width: max-content; background: var(--accent); color: var(--bg); padding: 1.2rem 0; box-shadow: 0 0 40px rgba(200, 255, 0, 0.15); }
+.marquee-content { display: flex; align-items: center; justify-content: space-around; min-width: 100%; animation: scrollText 20s linear infinite; }
+.marquee-content span { padding: 0 2rem; font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; white-space: nowrap; }
+.marquee-content .dot { padding: 0; font-size: 0.8rem; opacity: 0.6; }
+@keyframes scrollText { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
 /* ===== SECTIONS COMMON ===== */
 section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
