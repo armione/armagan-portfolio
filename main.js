@@ -342,6 +342,31 @@ function initBackToTop() {
   });
 }
 
+// ===== LOCAL TIME =====
+function initTime() {
+  const timeEl = document.getElementById('local-time');
+  if (!timeEl) return;
+  const updateTime = () => {
+    const now = new Date();
+    timeEl.textContent = now.toLocaleTimeString('tr-TR');
+  };
+  updateTime(); // initial call
+  setInterval(updateTime, 1000);
+}
+
+// ===== THEME SWITCHER =====
+function initThemeSwitcher() {
+  const root = document.documentElement;
+  const btns = document.querySelectorAll('.theme-btn');
+  btns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const color = e.target.getAttribute('data-color');
+      root.style.setProperty('--accent', color);
+      root.style.setProperty('--accent-dim', color + '26');
+    });
+  });
+}
+
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
   renderProjects();
@@ -354,4 +379,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initSmoothScroll();
   initBackToTop();
+  initTime();
+  initThemeSwitcher();
 });
