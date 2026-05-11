@@ -160,16 +160,64 @@ button { cursor: pointer; }
 .hero-visual { position: relative; width: 400px; height: 400px; z-index: 2; display: flex; justify-content: center; align-items: center; }
 .hero-logo-wrapper { position: relative; height: 160px; width: 400px; display: flex; justify-content: center; align-items: center; transform: scale(0.85); }
 .hero-logo-state { position: absolute; display: flex; align-items: center; justify-content: center; width: 100%; }
-.hero-tabela { font-weight: 800; font-size: 130px; letter-spacing: -5px; color: #ffffff; animation: fadeOutTabela 4s infinite; }
-.hero-bracket { color: var(--accent); margin-left: 16px; animation: flexBracket 4s infinite; }
-.hero-goal { font-family: 'Outfit', sans-serif; font-weight: 900; font-style: italic; font-size: 140px; letter-spacing: -3px; color: var(--accent); opacity: 0; transform: scale(0.9); animation: fadeInGoal 4s infinite; filter: drop-shadow(0 0 30px var(--accent-dim)); }
+.hero-tabela { font-weight: 800; font-size: 130px; letter-spacing: -5px; color: #ffffff; }
+.hero-bracket { color: var(--accent); margin-left: 16px; animation: flexBracket 9s infinite; }
+.hero-goal { font-family: 'Outfit', sans-serif; font-weight: 900; font-style: italic; font-size: 140px; letter-spacing: -3px; color: var(--accent); filter: drop-shadow(0 0 30px var(--accent-dim)); }
 .hero-line { font-family: var(--font-main); font-style: normal; font-weight: 400; margin-left: 12px; }
-.hero-football { position: absolute; font-size: 50px; opacity: 0; animation: shootBall 4s infinite; }
+.hero-football { position: absolute; font-size: 50px; opacity: 0; animation: shootBall 9s infinite; }
 
-@keyframes shootBall { 0% { transform: translateX(-180px) rotate(0deg); opacity: 0; } 10% { transform: translateX(-140px) rotate(90deg); opacity: 1; } 25% { transform: translateX(80px) rotate(360deg); opacity: 1; } 28% { transform: translateX(100px) rotate(400deg); opacity: 0; } 100% { transform: translateX(100px); opacity: 0; } }
-@keyframes flexBracket { 0%, 20% { transform: scaleX(1); } 25% { transform: scaleX(1.8) translateX(2px); } 30%, 100% { transform: scaleX(1); } }
-@keyframes fadeOutTabela { 0%, 25% { opacity: 1; filter: blur(0); } 28%, 100% { opacity: 0; filter: blur(4px); transform: scale(0.95); } }
-@keyframes fadeInGoal { 0%, 25% { opacity: 0; transform: scale(0.8); } 28% { opacity: 1; transform: scale(1.1); } 32% { transform: scale(1); } 80% { opacity: 1; transform: scale(1); filter: blur(0); } 85%, 100% { opacity: 0; transform: scale(0.9); filter: blur(4px); } }
+.hero-state-1 { animation: cycleOne 9s infinite; }
+.hero-state-2 { animation: cycleTwo 9s infinite; opacity: 0; }
+.hero-state-3 { animation: cycleThree 9s infinite; opacity: 0; }
+
+@keyframes cycleOne {
+  0%, 28% { opacity: 1; filter: blur(0); transform: scale(1); }
+  32%, 100% { opacity: 0; filter: blur(4px); transform: scale(0.95); }
+}
+@keyframes cycleTwo {
+  0%, 30% { opacity: 0; filter: blur(4px); transform: scale(0.95); }
+  34%, 61% { opacity: 1; filter: blur(0); transform: scale(1); }
+  65%, 100% { opacity: 0; filter: blur(4px); transform: scale(0.95); }
+}
+@keyframes cycleThree {
+  0%, 63% { opacity: 0; filter: blur(4px); transform: scale(0.95); }
+  67%, 94% { opacity: 1; filter: blur(0); transform: scale(1); }
+  98%, 100% { opacity: 0; filter: blur(4px); transform: scale(0.95); }
+}
+
+@keyframes shootBall {
+  0%, 65% { transform: translateX(-180px) rotate(0deg); opacity: 0; }
+  68% { transform: translateX(-140px) rotate(90deg); opacity: 1; }
+  85% { transform: translateX(80px) rotate(360deg); opacity: 1; }
+  88%, 100% { transform: translateX(100px) rotate(400deg); opacity: 0; }
+}
+@keyframes flexBracket { 
+  40%, 50% { transform: scaleX(1); } 
+  55% { transform: scaleX(1.8) translateX(2px); } 
+  60%, 100% { transform: scaleX(1); } 
+}
+
+/* ARMIONE Logotype */
+.hero-armione {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 130px;
+  letter-spacing: -6px;
+  color: var(--text);
+  display: flex;
+  align-items: flex-start;
+}
+.hero-asterisk {
+  color: var(--accent);
+  font-size: 90px;
+  margin-left: 8px;
+  line-height: 1;
+  animation: spinAsterisk 4s infinite linear;
+  display: inline-block;
+}
+@keyframes spinAsterisk {
+  100% { transform: rotate(360deg); }
+}
 
 .scroll-indicator { position: absolute; bottom: 8rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.8rem; font-size: 0.75rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
 .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollDown 2s ease-in-out infinite; }
