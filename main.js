@@ -434,7 +434,7 @@ function initEasterEgg() {
   
   Selam! Kodların arasına kadar girdiğine göre detayları seviyorsun.
   Gel, birlikte harika ürünler geliştirelim.
-  İletişim: armagan@example.com (veya istediğin e-posta adresi)
+  İletişim: 3dgamertr@gmail.com
   `, styles);
 }
 
