@@ -2,6 +2,9 @@
    CASE STUDY — Interactive Scripts
    ══════════════════════════════════════ */
 
+import { inject } from '@vercel/analytics';
+inject();
+
 import { PROMPTS } from './case-study-prompts.js';
 
 document.addEventListener('DOMContentLoaded', () => {

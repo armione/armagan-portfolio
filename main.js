@@ -1,3 +1,6 @@
+import { inject } from '@vercel/analytics';
+inject();
+
 import { projects } from './gallery_data.js';
 
 // ===== STATE =====
