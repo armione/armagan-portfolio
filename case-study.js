@@ -65,10 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.vid-card').forEach(el => vidObs.observe(el));
 
-    // ── Inject expand button into every vid-card
-    document.querySelectorAll('.vid-card').forEach(card => {
+    // ── Inject expand button into every vid-card AND img-card
+    document.querySelectorAll('.vid-card, .img-card').forEach(card => {
         const btn = document.createElement('button');
-        btn.className = 'vid-expand';
+        const isVideo = card.classList.contains('vid-card');
+        btn.className = isVideo ? 'vid-expand' : 'img-expand';
         btn.innerHTML = '⛶';
         btn.title = 'Tam Ekran';
         card.appendChild(btn);
@@ -83,19 +84,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ── Lightbox logic
-    const lightbox = document.getElementById('video-lightbox');
+    const lightbox = document.getElementById('media-lightbox');
     const lbVideo = document.getElementById('lightbox-video');
+    const lbImage = document.getElementById('lightbox-image');
     const lbMute = document.getElementById('lb-mute');
     const lbClose = document.getElementById('lb-close');
     const lbBackdrop = lightbox.querySelector('.lightbox-backdrop');
 
-    function openLightbox(src) {
-        lbVideo.src = src;
-        lbVideo.muted = false;
-        lbMute.textContent = '🔊';
+    function openLightbox(src, type) {
+        if (type === 'video') {
+            lbVideo.style.display = 'block';
+            lbImage.style.display = 'none';
+            lbMute.style.display = 'flex';
+            lbVideo.src = src;
+            lbVideo.muted = false;
+            lbMute.textContent = '🔊';
+            lbVideo.play().catch(() => {});
+        } else {
+            lbImage.style.display = 'block';
+            lbVideo.style.display = 'none';
+            lbMute.style.display = 'none';
+            lbImage.src = src;
+        }
+        
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
-        lbVideo.play().catch(() => {});
     }
 
     function closeLightbox() {
@@ -103,15 +116,28 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
         lbVideo.pause();
         lbVideo.removeAttribute('src');
+        lbImage.removeAttribute('src');
     }
 
     // Expand button opens lightbox
-    document.querySelectorAll('.vid-expand').forEach(btn => {
+    document.querySelectorAll('.vid-expand, .img-expand').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            const video = btn.closest('.vid-card').querySelector('video');
-            if (video) openLightbox(video.src);
+            const card = btn.closest('.vid-card, .img-card');
+            if (card.classList.contains('vid-card')) {
+                const video = card.querySelector('video');
+                if (video) openLightbox(video.src, 'video');
+            } else {
+                const img = card.querySelector('img');
+                if (img) openLightbox(img.src, 'image');
+            }
         });
+    });
+
+    // Image click also opens lightbox
+    document.querySelectorAll('.img-card img').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src, 'image'));
+        img.style.cursor = 'pointer';
     });
 
     // Mute toggle
