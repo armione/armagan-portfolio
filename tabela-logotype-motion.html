@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela - Goal Impact Motion | Design Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:ital,wght@0,400;0,700;0,900;1,900&family=Space+Grotesk:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Open Design Tokens */
+        :root {
+            --bg: #0a0a0b;
+            --surface: #131316;
+            --fg: #f4f4f5;
+            --muted: #a1a1aa;
+            --border: #27272a;
+            --accent: #c8ff00;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-italic: 'Outfit', sans-serif;
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-body);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            cursor: crosshair;
+            perspective: 1200px;
+        }
+
+        /* Ambient Environment */
+        .ambient-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(200, 255, 0, 0.05) 0%, transparent 60%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 0;
+            transition: all 0.5s ease-out;
+            filter: blur(50px);
+        }
+
+        .noise-layer {
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 10;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Main Composition */
+        .scene {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+
+        /* Tabela Word (The Net) */
+        .word-tabela {
+            font-family: var(--font-display);
+            font-size: 8vw;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            transform-origin: top center;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease, filter 0.4s ease;
+        }
+
+        /* The Goal Post */
+        .post {
+            font-family: var(--font-display);
+            font-size: 8vw;
+            font-weight: 300;
+            color: var(--muted);
+            margin-left: 20px;
+            transform-origin: bottom center;
+        }
+
+        /* The Ball */
+        .ball {
+            position: absolute;
+            left: -20vw; /* Start off screen left */
+            top: 20%;
+            font-size: 3vw;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
+            z-index: 5;
+            /* Will be animated via keyframes when triggered */
+        }
+
+        /* The Goal Burst */
+        .word-goal {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            font-family: var(--font-italic);
+            font-size: 12vw;
+            font-weight: 900;
+            font-style: italic;
+            color: var(--accent);
+            letter-spacing: -0.04em;
+            text-shadow: 0 0 40px rgba(200, 255, 0, 0.4), 0 0 100px rgba(200, 255, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ANIMATION STATES */
+        
+        /* State 1: The Kick (Ball flies across) */
+        body.state-kick .ball {
+            animation: ballFly 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes ballFly {
+            0% { transform: translate(0, 0) rotate(0deg); left: -20vw; }
+            50% { transform: translate(0, -3vw) rotate(360deg); left: 30vw; } /* Arc over Tabela */
+            100% { transform: translate(0, 1vw) rotate(720deg); left: calc(100% - 2vw); } /* Hits the post */
+        }
+
+        /* State 2: Impact (Post shakes violently) */
+        body.state-impact .post {
+            animation: shakePost 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+            color: var(--accent); /* Post lights up on impact */
+        }
+
+        @keyframes shakePost {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(15deg); }
+            40% { transform: rotate(-10deg); }
+            60% { transform: rotate(5deg); }
+            80% { transform: rotate(-2deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        body.state-impact .ball {
+            /* Ball bounces off and falls */
+            left: calc(100% - 2vw);
+            transform: translate(0, 1vw) rotate(720deg);
+            animation: ballFall 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+        }
+
+        @keyframes ballFall {
+            0% { transform: translate(0, 1vw) rotate(720deg); }
+            100% { transform: translate(10vw, 40vh) rotate(1080deg); opacity: 0; }
+        }
+
+        /* State 3: The Net Falls & Goal appears */
+        body.state-goal .word-tabela {
+            transform: translateY(50px) rotateX(-70deg); /* Falls back like a net */
+            opacity: 0.2;
+            filter: blur(4px);
+        }
+
+        body.state-goal .word-goal {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1) rotate(-5deg);
+        }
+
+        body.state-goal .ambient-glow {
+            background: radial-gradient(circle, rgba(200, 255, 0, 0.25) 0%, transparent 70%);
+            width: 1200px;
+            height: 1200px;
+        }
+
+        /* UI Controls */
+        .controls {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        body:hover .controls { opacity: 1; }
+
+        button {
+            background: var(--surface);
+            color: var(--fg);
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(200,255,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .watermark {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: -0.5px;
+            color: var(--muted);
+            z-index: 20;
+        }
+        .watermark span { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow" id="glow"></div>
+    <div class="noise-layer"></div>
+
+    <div class="watermark">DESIGN ENGINEER <span>// DYNAMIC LOGOTYPE</span></div>
+
+    <div class="scene">
+        <div class="ball">⚽</div>
+        <div class="word-tabela">TABELA</div>
+        <div class="post">|</div>
+        <div class="word-goal">GOAL!</div>
+    </div>
+
+    <div class="controls">
+        <button onclick="playSequence()">▶ Play Motion</button>
+        <button onclick="resetState()">↺ Reset</button>
+    </div>
+
+    <script>
+        // Mouse tracking glow
+        const glow = document.getElementById('glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = `${e.clientX}px`;
+            glow.style.top = `${e.clientY}px`;
+        });
+
+        // The Motion Director
+        let timeout1, timeout2, timeout3;
+
+        function playSequence() {
+            resetState();
+            
+            // Allow DOM to process reset before starting
+            setTimeout(() => {
+                // Scene 1: The Kick (Ball flies)
+                document.body.classList.add('state-kick');
+                
+                // Scene 2: The Impact (Ball hits the post)
+                // Timed perfectly to when the ballFly animation reaches 100% (0.8s)
+                timeout1 = setTimeout(() => {
+                    document.body.classList.remove('state-kick');
+                    document.body.classList.add('state-impact');
+                }, 800); 
+
+                // Scene 3: The Net Falls & Goal appears
+                // Timed slightly after the impact starts shaking
+                timeout2 = setTimeout(() => {
+                    document.body.classList.add('state-goal');
+                }, 950);
+
+            }, 50);
+        }
+
+        function resetState() {
+            clearTimeout(timeout1);
+            clearTimeout(timeout2);
+            document.body.className = '';
+        }
+
+        // Auto-play on load
+        window.addEventListener('load', () => {
+            setTimeout(playSequence, 500);
+        });
+    </script>
+</body>
+</html>
