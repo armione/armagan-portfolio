@@ -3,7 +3,7 @@
 // Loaded by case-study.html, rendered into prompt boxes
 // ══════════════════════════════════════════════════
 
-const PROMPTS = {
+export const PROMPTS = {
 
   // ─── IMAGE PART 1: GTA San Andreas ───
   gta_system: `Using this person's exact face, hair, and features, create a GTA San Andreas (2004) character selection screen. The person must be immediately recognizable but rendered in PS2-era low-polygon 3D style.

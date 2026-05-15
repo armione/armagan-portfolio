@@ -2,7 +2,38 @@
    CASE STUDY — Interactive Scripts
    ══════════════════════════════════════ */
 
+import { PROMPTS } from './case-study-prompts.js';
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Populate prompt boxes from data
+    const map = {
+        'pre-gta-system': PROMPTS.gta_system,
+        'pre-gta-tpl1': PROMPTS.gta_template_sercan,
+        'pre-gta-tpl2': PROMPTS.gta_template_mehmet,
+        'pre-toy-system': PROMPTS.toy_system,
+        'pre-nostalgia-system': PROMPTS.nostalgia_system,
+        'pre-nostalgia-tpl': PROMPTS.nostalgia_template,
+        'pre-coach-gpt': PROMPTS.coach_gpt_system,
+        'pre-coach-tpl-s': PROMPTS.coach_gpt_sercan,
+        'pre-coach-tpl-m': PROMPTS.coach_gpt_mehmet,
+        'pre-coach-kling': PROMPTS.coach_kling,
+        'pre-gaming-gpt1': PROMPTS.gaming_gpt_gamer,
+        'pre-gaming-gpt2': PROMPTS.gaming_gpt_fight,
+        'pre-gaming-kling1': PROMPTS.gaming_kling_gamer,
+        'pre-gaming-kling2': PROMPTS.gaming_kling_fight,
+        'pre-trex-gpt': PROMPTS.trex_gpt_system,
+        'pre-trex-tpl': PROMPTS.trex_gpt_template,
+        'pre-trex-kling': PROMPTS.trex_kling,
+        'pre-trex-omni': PROMPTS.trex_omni,
+    };
+    for (const [id, text] of Object.entries(map)) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+    }
+    // Toy template note
+    const toyNote = document.getElementById('toy-template-note');
+    if (toyNote) toyNote.textContent = PROMPTS.toy_template_note;
+
     // ── Nav scroll effect
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
