@@ -34,12 +34,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.vid-card').forEach(el => vidObs.observe(el));
 
-    // ── Video click → play/pause toggle
+    // ── Inject expand button into every vid-card
+    document.querySelectorAll('.vid-card').forEach(card => {
+        const btn = document.createElement('button');
+        btn.className = 'vid-expand';
+        btn.innerHTML = '⛶';
+        btn.title = 'Tam Ekran';
+        card.appendChild(btn);
+    });
+
+    // ── Video click → play/pause toggle (on the video itself)
     document.querySelectorAll('.vid-card video').forEach(v => {
         v.loop = true;
         v.addEventListener('click', () => {
             if (v.paused) v.play(); else v.pause();
         });
+    });
+
+    // ── Lightbox logic
+    const lightbox = document.getElementById('video-lightbox');
+    const lbVideo = document.getElementById('lightbox-video');
+    const lbMute = document.getElementById('lb-mute');
+    const lbClose = document.getElementById('lb-close');
+    const lbBackdrop = lightbox.querySelector('.lightbox-backdrop');
+
+    function openLightbox(src) {
+        lbVideo.src = src;
+        lbVideo.muted = false;
+        lbMute.textContent = '🔊';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        lbVideo.play().catch(() => {});
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        lbVideo.pause();
+        lbVideo.removeAttribute('src');
+    }
+
+    // Expand button opens lightbox
+    document.querySelectorAll('.vid-expand').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const video = btn.closest('.vid-card').querySelector('video');
+            if (video) openLightbox(video.src);
+        });
+    });
+
+    // Mute toggle
+    lbMute.addEventListener('click', () => {
+        lbVideo.muted = !lbVideo.muted;
+        lbMute.textContent = lbVideo.muted ? '🔇' : '🔊';
+    });
+
+    // Close lightbox
+    lbClose.addEventListener('click', closeLightbox);
+    lbBackdrop.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
     });
 
     // ── Prompt expand/collapse toggle
