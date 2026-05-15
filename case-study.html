@@ -11,8 +11,20 @@
 </head>
 <body>
 
+<!-- ── Mouse Glow ── -->
+<div class="cursor-glow"></div>
+
+<!-- ── TOC Navigation ── -->
+<nav class="toc-nav">
+    <div class="toc-dot active" data-target="sec-gta" data-label="GTA SA"></div>
+    <div class="toc-dot" data-target="sec-toy" data-label="Toy Figür"></div>
+    <div class="toc-dot" data-target="sec-nostalgia" data-label="Nostalji"></div>
+    <div class="toc-dot" data-target="sec-coach" data-label="Teknik Direktör"></div>
+    <div class="toc-dot" data-target="sec-gaming" data-label="Gaming"></div>
+</nav>
+
 <!-- ═══ NAV ═══ -->
-<nav>
+<nav class="main-nav">
     <a href="/" class="logo">Armağan Öztürk</a>
     <a href="/" class="back">← Portfolyoya Dön</a>
 </nav>
@@ -61,7 +73,7 @@
 <!-- ═══════════════════════════════════════════ -->
 
 <!-- ─── IMAGE 1: GTA San Andreas ─── -->
-<section class="fade-in">
+<section class="fade-in" id="sec-gta">
     <div class="concept-header">
         <div class="icon">🎮</div>
         <div>
@@ -75,6 +87,18 @@
         <div class="img-card"><img src="/case-study/GTA SA Viral/ahmet.png" alt="GTA Ahmet"><div class="name-tag">Ahmet</div></div>
         <div class="img-card"><img src="/case-study/GTA SA Viral/sercan.png" alt="GTA Sercan"><div class="name-tag">Sercan</div></div>
         <div class="img-card"><img src="/case-study/GTA SA Viral/mehmet.png" alt="GTA Mehmet"><div class="name-tag">Mehmet</div></div>
+    </div>
+
+    <!-- ── Interactive Before / After ── -->
+    <div class="ba-slider">
+        <img class="img-bg" src="/case-study/GTA SA Viral/sercan.png" alt="Sercan Variation">
+        <img class="img-fg" src="/case-study/GTA SA Viral/ahmet.png" alt="Ahmet Master">
+        <div class="label-before">Ahmet (Master)</div>
+        <div class="label-after">Sercan (Varyasyon)</div>
+        <input type="range" min="0" max="100" value="50">
+        <div class="handle">
+            <div class="handle-btn">↔</div>
+        </div>
     </div>
 
     <div class="prompt-box collapsed" id="prompt-gta-system">
@@ -97,7 +121,7 @@
 <div class="divider"></div>
 
 <!-- ─── IMAGE 2: Designer Toy ─── -->
-<section class="fade-in">
+<section class="fade-in" id="sec-toy">
     <div class="concept-header">
         <div class="icon">🧸</div>
         <div>
@@ -127,7 +151,7 @@
 <div class="divider"></div>
 
 <!-- ─── IMAGE 3: Nostalji ─── -->
-<section class="fade-in">
+<section class="fade-in" id="sec-nostalgia">
     <div class="concept-header">
         <div class="icon">📸</div>
         <div>
@@ -162,7 +186,7 @@
 <!-- ═══════════════════════════════════════════ -->
 
 <!-- ─── VIDEO 1: Football Coach ─── -->
-<section class="fade-in">
+<section class="fade-in" id="sec-coach">
     <div class="concept-header">
         <div class="icon">⚽</div>
         <div>
@@ -203,7 +227,7 @@
 <div class="divider"></div>
 
 <!-- ─── VIDEO 2: Gaming Short Film ─── -->
-<section class="fade-in">
+<section class="fade-in" id="sec-gaming">
     <div class="concept-header">
         <div class="icon">🕹️</div>
         <div>

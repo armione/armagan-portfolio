@@ -182,4 +182,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
 
     document.querySelectorAll('.stat .num').forEach(el => counterObs.observe(el));
+
+    // ── Mouse Glow
+    const glow = document.querySelector('.cursor-glow');
+    if (glow && window.matchMedia("(pointer: fine)").matches) {
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+    }
+
+    // ── TOC Navigation
+    const tocDots = document.querySelectorAll('.toc-dot');
+    const sections = Array.from(tocDots).map(dot => document.getElementById(dot.dataset.target)).filter(Boolean);
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 300) {
+                current = sec.getAttribute('id');
+            }
+        });
+        tocDots.forEach(dot => {
+            dot.classList.remove('active');
+            if (dot.dataset.target === current) dot.classList.add('active');
+        });
+    }, { passive: true });
+
+    tocDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const target = document.getElementById(dot.dataset.target);
+            if (target) {
+                window.scrollTo({ top: target.offsetTop - 100, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ── Copy to Clipboard
+    document.querySelectorAll('.prompt-box').forEach(box => {
+        const pre = box.querySelector('pre');
+        if (!pre) return;
+        const btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.title = 'Kopyala';
+        btn.textContent = '📋 Kopyala';
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigator.clipboard.writeText(pre.textContent).then(() => {
+                btn.textContent = '✓ Kopyalandı';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Kopyala';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+        box.appendChild(btn);
+    });
+
+    // ── Before / After Slider
+    document.querySelectorAll('.ba-slider').forEach(slider => {
+        const input = slider.querySelector('input');
+        const fg = slider.querySelector('.img-fg');
+        const handle = slider.querySelector('.handle');
+        if (input && fg && handle) {
+            input.addEventListener('input', (e) => {
+                const val = e.target.value;
+                fg.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+                handle.style.left = `${val}%`;
+            });
+        }
+    });
+
+    // ── Skeleton Loading
+    document.querySelectorAll('.img-card img').forEach(img => {
+        if (img.complete) img.classList.add('loaded');
+        else img.addEventListener('load', () => img.classList.add('loaded'));
+    });
+    document.querySelectorAll('.vid-card video').forEach(vid => {
+        if (vid.readyState >= 3) vid.classList.add('loaded');
+        else vid.addEventListener('loadeddata', () => vid.classList.add('loaded'));
+    });
 });

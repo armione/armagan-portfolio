@@ -46,24 +46,24 @@ body {
 }
 
 /* ── NAVIGATION ─────────────────────── */
-nav {
+.main-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 14px 40px;
     display: flex; justify-content: space-between; align-items: center;
-    background: rgba(10,10,11,.75);
+    background: rgba(17,17,19,.75);
     backdrop-filter: blur(24px) saturate(1.4);
     -webkit-backdrop-filter: blur(24px) saturate(1.4);
     border-bottom: 1px solid var(--border-subtle);
     transition: background .3s;
 }
-nav.scrolled { background: rgba(10,10,11,.92); }
-nav a { text-decoration: none; }
-nav .logo {
+.main-nav.scrolled { background: rgba(17,17,19,.92); }
+.main-nav a { text-decoration: none; }
+.main-nav .logo {
     color: var(--text);
     font-weight: 700; font-size: 13px;
     letter-spacing: 2.5px; text-transform: uppercase;
 }
-nav .back {
+.main-nav .back {
     color: var(--text-muted);
     font-size: 13px; font-weight: 500;
     transition: color .3s;
@@ -472,4 +472,144 @@ footer .footer-tools { margin-top: 8px; letter-spacing: .5px; }
     .concept-header h2 { font-size: 22px; }
     .prompt-box { padding: 20px 16px; }
     .prompt-box pre { font-size: 11px; }
+    .toc-nav { display: none; } /* Hide TOC on mobile */
+    .cursor-glow { display: none; } /* Disable cursor glow on touch */
+}
+
+/* ── MOUSE GLOW ─────────────────────── */
+.cursor-glow {
+    position: fixed; top: 0; left: 0;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, rgba(52,211,153,0.03) 40%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999; mix-blend-mode: screen;
+    will-change: left, top;
+}
+
+/* ── TOC NAVIGATION ─────────────────── */
+.toc-nav {
+    position: fixed; right: 24px; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 14px;
+    z-index: 90;
+}
+.toc-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border); transition: all .3s;
+    cursor: pointer; position: relative;
+}
+.toc-dot:hover, .toc-dot.active {
+    background: var(--accent); transform: scale(1.4);
+    box-shadow: 0 0 10px var(--accent-dim);
+}
+.toc-dot::after {
+    content: attr(data-label);
+    position: absolute; right: 20px; top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-elevated); padding: 4px 10px;
+    border-radius: 6px; font-size: 11px; font-weight: 600;
+    white-space: nowrap; opacity: 0; pointer-events: none;
+    transition: opacity .3s, transform .3s;
+    border: 1px solid var(--border); color: var(--text-secondary);
+}
+.toc-dot:hover::after {
+    opacity: 1; transform: translateY(-50%) translateX(-4px);
+}
+
+/* ── COPY BUTTON ────────────────────── */
+.copy-btn {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    color: var(--text-muted); padding: 6px 10px;
+    border-radius: 6px; font-size: 11px; font-weight: 600;
+    cursor: pointer; transition: all .2s; z-index: 10;
+}
+.copy-btn:hover {
+    background: var(--bg-elevated); color: var(--text);
+    border-color: var(--accent-border);
+}
+.copy-btn.copied {
+    background: var(--green-dim); color: var(--green);
+    border-color: rgba(52,211,153,.3);
+}
+
+/* ── BEFORE / AFTER SLIDER ──────────── */
+.ba-slider {
+    position: relative; width: 100%; overflow: hidden;
+    border-radius: var(--radius); aspect-ratio: 16/9;
+    margin-bottom: 40px; border: 1px solid var(--border);
+}
+.ba-slider .img-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; display: block;
+}
+.ba-slider .img-fg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    display: block;
+}
+.ba-slider input[type="range"] {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    opacity: 0; z-index: 10; cursor: ew-resize; margin: 0;
+}
+.ba-slider .handle {
+    position: absolute; top: 0; bottom: 0; left: 50%; width: 2px;
+    background: var(--accent); transform: translateX(-50%);
+    pointer-events: none; z-index: 5;
+    display: flex; align-items: center; justify-content: center;
+}
+.ba-slider .handle-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    font-size: 14px;
+}
+.ba-slider .label-before, .ba-slider .label-after {
+    position: absolute; bottom: 16px; padding: 4px 12px;
+    border-radius: 6px; background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px); font-size: 11px; font-weight: 700;
+    color: #fff; z-index: 4; text-transform: uppercase; letter-spacing: 1px;
+}
+.ba-slider .label-before { left: 16px; }
+.ba-slider .label-after { right: 16px; }
+
+/* ── BRAND GLOWS ────────────────────── */
+.tool-tag { transition: all .3s ease; }
+.tool-tag:hover {
+    transform: translateY(-1px);
+}
+.prompt-label:has(.tool-tag:contains('ChatGPT')):hover .tool-tag {
+    border-color: #10a37f; color: #10a37f;
+    box-shadow: 0 0 10px rgba(16,163,127,0.2);
+}
+.prompt-label:has(.tool-tag:contains('Kling')):hover .tool-tag {
+    border-color: #60a5fa; color: #60a5fa;
+    box-shadow: 0 0 10px rgba(96,165,250,0.2);
+}
+
+/* ── SKELETON LOADING ───────────────── */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: .5; }
+    100% { opacity: 1; }
+}
+.img-card, .vid-card {
+    background: var(--bg-elevated);
+    position: relative;
+}
+.img-card::before, .vid-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--bg-card) 0%, var(--bg-elevated) 50%, var(--bg-card) 100%);
+    background-size: 200% 100%;
+    animation: pulse 2s infinite ease-in-out;
+    z-index: 0; pointer-events: none;
+}
+.img-card img, .vid-card video {
+    position: relative; z-index: 1;
+    opacity: 0; transition: opacity .5s ease;
+}
+.img-card img.loaded, .vid-card video.loaded {
+    opacity: 1;
 }
