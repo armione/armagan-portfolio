@@ -613,3 +613,43 @@ footer .footer-tools { margin-top: 8px; letter-spacing: .5px; }
 .img-card img.loaded, .vid-card video.loaded {
     opacity: 1;
 }
+
+/* ── BOTTOM CTA ─────────────────────── */
+.bottom-cta {
+    text-align: center; padding: 60px 20px 80px;
+}
+.cta-content {
+    max-width: 640px; margin: 0 auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    padding: 48px; border-radius: var(--radius);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.cta-content h2 {
+    font-size: 28px; font-weight: 800; letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #fff, var(--accent-bright));
+    -webkit-background-clip: text; color: transparent;
+}
+.cta-content p {
+    color: var(--text-secondary); font-size: 15px; margin-bottom: 32px;
+}
+.cta-actions {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+.cta-actions a {
+    text-decoration: none; padding: 12px 24px; border-radius: 999px;
+    font-size: 14px; font-weight: 600; transition: all .3s;
+}
+.cta-actions .btn-primary {
+    background: var(--text); color: var(--bg);
+}
+.cta-actions .btn-primary:hover {
+    background: var(--accent); color: #fff; transform: scale(1.05);
+}
+.cta-actions .btn-secondary {
+    background: var(--bg-card); color: var(--text); border: 1px solid var(--border);
+}
+.cta-actions .btn-secondary:hover {
+    background: var(--border); color: #fff; transform: scale(1.05);
+}
