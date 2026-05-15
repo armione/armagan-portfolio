@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study — AI Viral Content Pipeline | Armağan Öztürk</title>
+    <meta name="description" content="AI-driven viral content pipeline: System Prompt → Template → Variation. 6 konsept, 18 asset, 3 araç.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+    <a href="/" class="logo">Armağan Öztürk</a>
+    <a href="/" class="back">← Portfolyoya Dön</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+    <div class="badge">Case Study</div>
+    <h1>AI-Driven <span class="gradient">Viral Content</span> Pipeline</h1>
+    <p class="sub">Tek bir kişisel fotoğraftan ölçeklenebilir, şablonlanabilir ve marka entegreli viral içerik üretim hattı. Her konsept 3 farklı kişiye uygulandı.</p>
+    <div class="stats">
+        <div class="stat"><div class="num" data-count="6">0</div><div class="label">Prompt Şablonu</div></div>
+        <div class="stat"><div class="num" data-count="9">0</div><div class="label">AI Görsel</div></div>
+        <div class="stat"><div class="num" data-count="9">0</div><div class="label">AI Video</div></div>
+        <div class="stat"><div class="num" data-count="3">0</div><div class="label">Araç</div></div>
+    </div>
+</div>
+
+<!-- ═══ PIPELINE METHODOLOGY ═══ -->
+<section class="fade-in">
+    <div class="section-label">Metodoloji</div>
+    <div class="section-title">System Prompt → Template → Variation</div>
+    <div class="section-desc">Bir "master prompt" yazılır, çıktısı referans görsel olarak kilitlenir, ardından yeni kişi fotoğrafı verilerek sadece yüz değiştirilir. Sahne, ışık, kamera, kıyafet — her şey birebir korunur. Tutarlı, ölçeklenebilir, tekrarlanabilir.</div>
+    <div class="pipeline-grid">
+        <div class="pipeline-step fade-in fade-in-delay-1">
+            <div class="step-num">1</div>
+            <h3>System Prompt</h3>
+            <p>İlk karakter için sıfırdan detaylı bir master prompt yazılır. Sahne, ışık, kamera açısı, kıyafet, HUD — her detay tek tek belirlenir.</p>
+        </div>
+        <div class="pipeline-step fade-in fade-in-delay-2">
+            <div class="step-num">2</div>
+            <h3>Template Lock</h3>
+            <p>Üretilen görsel "referans şablon" olarak kilitlenir. Bu görsel, tüm varyasyonların temel taşıdır.</p>
+        </div>
+        <div class="pipeline-step fade-in fade-in-delay-3">
+            <div class="step-num">3</div>
+            <h3>Variation</h3>
+            <p>Yeni kişinin fotoğrafı + referans görsel birlikte verilir. Sadece yüz değişir, sahne birebir korunur. ×N kişi.</p>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--            IMAGE CONCEPTS                  -->
+<!-- ═══════════════════════════════════════════ -->
+
+<!-- ─── IMAGE 1: GTA San Andreas ─── -->
+<section class="fade-in">
+    <div class="concept-header">
+        <div class="icon">🎮</div>
+        <div>
+            <h2>GTA San Andreas — Karakter Seçim Ekranı</h2>
+            <span class="tag tag-image">AI Image</span>
+        </div>
+    </div>
+    <p class="section-desc">PS2 dönemi low-poly 3D estetiğinde karakter seçim ekranı. CRT tarama çizgileri, HUD elementleri, gritty sokak atmosferi. Her karakter kendi ismiyle HUD'da highlight edildi.</p>
+
+    <div class="img-grid">
+        <div class="img-card"><img src="public/case-study/GTA SA Viral/ahmet.png" alt="GTA Ahmet"><div class="name-tag">Ahmet</div></div>
+        <div class="img-card"><img src="public/case-study/GTA SA Viral/sercan.png" alt="GTA Sercan"><div class="name-tag">Sercan</div></div>
+        <div class="img-card"><img src="public/case-study/GTA SA Viral/mehmet.png" alt="GTA Mehmet"><div class="name-tag">Mehmet</div></div>
+    </div>
+
+    <div class="prompt-box collapsed" id="prompt-gta-system">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> System Prompt — Ahmet (Master)</div>
+        <pre id="pre-gta-system"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-gta-tpl1">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> Template Prompt — Sercan (Varyasyon)</div>
+        <pre id="pre-gta-tpl1"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-gta-tpl2">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> Template Prompt — Mehmet (Varyasyon)</div>
+        <pre id="pre-gta-tpl2"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── IMAGE 2: Designer Toy ─── -->
+<section class="fade-in">
+    <div class="concept-header">
+        <div class="icon">🧸</div>
+        <div>
+            <h2>Mobiva Collectibles — Designer Toy</h2>
+            <span class="tag tag-image">AI Image</span>
+        </div>
+    </div>
+    <p class="section-desc">Premium limited-edition vinyl art toy figürleri. "MOBIVA COLLECTIBLES" markalı kutu ambalajı ile stüdyo ürün çekimi estetiği. Her karakter kendi isim etiketiyle kutulanmış.</p>
+
+    <div class="img-grid">
+        <div class="img-card portrait"><img src="public/case-study/koleksiyon toy/koleyksiyonahmet.png" alt="Toy Ahmet"><div class="name-tag">Ahmet</div></div>
+        <div class="img-card portrait"><img src="public/case-study/koleksiyon toy/koleksiyonsercan.png" alt="Toy Sercan"><div class="name-tag">Sercan</div></div>
+        <div class="img-card portrait"><img src="public/case-study/koleksiyon toy/koleksiyonmehmet.png" alt="Toy Mehmet"><div class="name-tag">Mehmet</div></div>
+    </div>
+
+    <div class="prompt-box collapsed" id="prompt-toy-system">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> System Prompt — Ahmet (Master)</div>
+        <pre id="pre-toy-system"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="callout info">
+        <span class="callout-icon">💡</span>
+        <div id="toy-template-note"></div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── IMAGE 3: Nostalji ─── -->
+<section class="fade-in">
+    <div class="concept-header">
+        <div class="icon">📸</div>
+        <div>
+            <h2>Nostalji — 10 Yaş & 30 Yaş</h2>
+            <span class="tag tag-image">AI Image</span>
+        </div>
+    </div>
+    <p class="section-desc">Aynı kişinin 9 yaşındaki ve yetişkin hali, 90'lar yatak odasında PS1 ile yan yana oyun oynuyor. Kodak Portra 400 film, 35mm anamorfik lens, CRT glow estetiği.</p>
+
+    <div class="img-grid">
+        <div class="img-card"><img src="public/case-study/10 yas ve 30 yas oyun oynuyor/10yasve30yas_ahmet.png" alt="Nostalgia Ahmet"><div class="name-tag">Ahmet</div></div>
+        <div class="img-card"><img src="public/case-study/10 yas ve 30 yas oyun oynuyor/10yasve30yas_sercan.png" alt="Nostalgia Sercan"><div class="name-tag">Sercan</div></div>
+        <div class="img-card"><img src="public/case-study/10 yas ve 30 yas oyun oynuyor/10yasve30yas_mehmet.png" alt="Nostalgia Mehmet"><div class="name-tag">Mehmet</div></div>
+    </div>
+
+    <div class="prompt-box collapsed" id="prompt-nostalgia-system">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> System Prompt — Ahmet (Master)</div>
+        <pre id="pre-nostalgia-system"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-nostalgia-tpl">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> Template Prompt — Sercan (Varyasyon)</div>
+        <pre id="pre-nostalgia-tpl"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!--            VIDEO CONCEPTS                  -->
+<!-- ═══════════════════════════════════════════ -->
+
+<!-- ─── VIDEO 1: Football Coach ─── -->
+<section class="fade-in">
+    <div class="concept-header">
+        <div class="icon">⚽</div>
+        <div>
+            <h2>Teknik Direktör — Hakeme Tepki</h2>
+            <span class="tag tag-video">AI Video</span>
+        </div>
+    </div>
+    <p class="section-desc">GS-FB derbisinde kenar çizgisinde hakeme itiraz eden teknik direktör. Broadcast kamera estetiği, beIN Sports skor grafikleri, telefoto lens sığ alan derinliği.</p>
+
+    <div class="vid-grid">
+        <div class="vid-card"><video src="public/case-study/td_hakemetepki/ahmethoca.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Ahmet</div></div>
+        <div class="vid-card"><video src="public/case-study/td_hakemetepki/sercanhoca.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Sercan</div></div>
+        <div class="vid-card"><video src="public/case-study/td_hakemetepki/mehmethoca.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Mehmet</div></div>
+    </div>
+
+    <div class="prompt-box collapsed" id="prompt-coach-gpt">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> System Prompt — Ahmet (Görsel)</div>
+        <pre id="pre-coach-gpt"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-coach-tpl-s">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> Template — Sercan</div>
+        <pre id="pre-coach-tpl-s"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-coach-tpl-m">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> Template — Mehmet</div>
+        <pre id="pre-coach-tpl-m"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-coach-kling">
+        <div class="prompt-label"><span class="tool-tag">Kling AI</span> Video Prompt (Tüm Karakterler)</div>
+        <pre id="pre-coach-kling"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── VIDEO 2: Gaming Short Film ─── -->
+<section class="fade-in">
+    <div class="concept-header">
+        <div class="icon">🕹️</div>
+        <div>
+            <h2>Gaming Kısa Film</h2>
+            <span class="tag tag-video">AI Video</span>
+            <span class="tag tag-mixed">CapCut Post-Prod</span>
+        </div>
+    </div>
+    <p class="section-desc">Sercan oyun oynarken → Ekranda Ahmet vs Mehmet dövüş maçı. İki ayrı AI video (gamer tepki + fighting game) üretilip CapCut'ta Zoom-In geçişiyle birleştirildi. MOBIVA neon tabela + logo sticker entegrasyonu.</p>
+
+    <div class="vid-grid two-col">
+        <div class="vid-card"><video src="public/case-study/2 video birleştirimi/video1oynuyor.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Sahne 1 — Gamer Tepki</div></div>
+        <div class="vid-card"><video src="public/case-study/2 video birleştirimi/video2tekken.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Sahne 2 — Dövüş Oyunu</div></div>
+    </div>
+    <div class="vid-grid single">
+        <div class="vid-card"><video src="public/case-study/2 video birleştirimi/video1vevideo2armagankurgu.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Final Kurgu — CapCut Zoom-In Geçiş</div></div>
+    </div>
+
+    <div class="prompt-box collapsed" id="prompt-gaming-gpt1">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> Sahne 1: Gamer Portresi — Sercan</div>
+        <pre id="pre-gaming-gpt1"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-gaming-gpt2">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> Sahne 2: Dövüş Oyunu Ekranı — Ahmet vs Mehmet</div>
+        <pre id="pre-gaming-gpt2"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-gaming-kling1">
+        <div class="prompt-label"><span class="tool-tag">Kling AI</span> Video 1: Gamer Tepki (5s)</div>
+        <pre id="pre-gaming-kling1"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-gaming-kling2">
+        <div class="prompt-label"><span class="tool-tag">Kling AI</span> Video 2: Dövüş Maçı (5s)</div>
+        <pre id="pre-gaming-kling2"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+
+    <div class="callout success">
+        <span class="callout-icon">✂️</span>
+        <div><strong>Post-Production:</strong> Video 1 (gamer tepki) ve Video 2 (dövüş maçı) CapCut for PC'de <strong>Zoom-In geçişiyle</strong> birleştirildi → <code>gaming-final.mp4</code></div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── VIDEO 3: T-Rex Office Selfie ─── -->
+<section class="fade-in">
+    <div class="concept-header">
+        <div class="icon">🦖</div>
+        <div>
+            <h2>T-Rex Ofis Baskını — GoPro Selfie</h2>
+            <span class="tag tag-video">AI Video</span>
+        </div>
+    </div>
+    <p class="section-desc">Arkasında T-Rex ofisi yıkarken, kahvesini yudumlayarak umursamazca selfie çeken adam. "Unbothered" viral akımı — GoPro fisheye lens, titreyen el kamerası estetiği.</p>
+
+    <div class="vid-grid">
+        <div class="vid-card"><video src="public/case-study/trexindaofis/ahmetofisvideo.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Ahmet</div></div>
+        <div class="vid-card"><video src="public/case-study/trexindaofis/sercanofisvideo.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Sercan</div></div>
+        <div class="vid-card"><video src="public/case-study/trexindaofis/mehmetofisvideo.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Mehmet</div></div>
+    </div>
+
+    <div class="prompt-box collapsed" id="prompt-trex-gpt">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> System Prompt — Sercan (Master)</div>
+        <pre id="pre-trex-gpt"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-trex-tpl">
+        <div class="prompt-label"><span class="tool-tag">ChatGPT</span> Template Prompt — Ahmet & Mehmet</div>
+        <pre id="pre-trex-tpl"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+    <div class="prompt-box collapsed" id="prompt-trex-kling">
+        <div class="prompt-label"><span class="tool-tag">Kling AI</span> Video Prompt (Tüm Karakterler)</div>
+        <pre id="pre-trex-kling"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── VIDEO 4: T-Rex Omni Multi-Shot ─── -->
+<section class="fade-in">
+    <div class="concept-header">
+        <div class="icon">🎬</div>
+        <div>
+            <h2>Kling 3.0 Omni — Multi-Shot Storyboard</h2>
+            <span class="tag tag-video">AI Video · 10s · 3 Sahne</span>
+        </div>
+    </div>
+    <p class="section-desc">Kling VIDEO 3.0 Omni'nin "Element" + "Multi-Shot Storyboard" özelliği ile tek üretimde 3 farklı sahne. Sercan'ın fotoğrafı @Image1 olarak yüklendi, model sahneler arasında karakter tutarlılığını korudu.</p>
+
+    <div class="vid-grid single">
+        <div class="vid-card"><video src="public/case-study/trex sercan özel/10sn3farklıshot.mp4" muted playsinline preload="metadata"></video><div class="name-tag">Sercan — 10s Multi-Shot (Selfie → T-Rex Giriş → Kahve)</div></div>
+    </div>
+
+    <div class="prompt-box collapsed" id="prompt-trex-omni">
+        <div class="prompt-label"><span class="tool-tag">Kling 3.0 Omni</span> Multi-Shot Prompt</div>
+        <pre id="pre-trex-omni"></pre>
+        <button class="prompt-toggle">▼ Devamını Gör</button>
+    </div>
+
+    <div class="callout info">
+        <span class="callout-icon">⚡</span>
+        <div><strong>Omni 3.0 Avantajı:</strong> Element özelliği sayesinde Sercan'ın yüzü tüm sahnelerde %100 tutarlı kaldı. Multi-Shot ile 3 farklı kamera açısı tek bir video üretiminde yönetildi.</div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ TOOLS & BRAND ═══ -->
+<section class="fade-in">
+    <div class="section-label">Araçlar & Marka</div>
+    <div class="section-title">Kullanılan Teknolojiler</div>
+    <div class="section-desc">Her aşamada farklı araçlar, tek bir entegre pipeline olarak çalıştı.</div>
+    <div class="tools-grid">
+        <div class="tool-card fade-in fade-in-delay-1">
+            <div class="tool-icon">🤖</div>
+            <h3>ChatGPT Image Gen</h3>
+            <p>Tüm görsellerin üretildiği ana araç. System prompt → Template variation metodolojisi ile tutarlı karakter üretimi.</p>
+        </div>
+        <div class="tool-card fade-in fade-in-delay-2">
+            <div class="tool-icon">🎥</div>
+            <h3>Kling AI VIDEO 3.0</h3>
+            <p>Image-to-Video dönüşümü. Omni modeli ile Multi-Shot storyboard ve Element (yüz kilitleme) özellikleri.</p>
+        </div>
+        <div class="tool-card fade-in fade-in-delay-3">
+            <div class="tool-icon">✂️</div>
+            <h3>CapCut for PC</h3>
+            <p>Post-production. Sahne birleştirme, Zoom-In geçişleri, ses efektleri ve müzik ekleme. Final export: 1080p MP4.</p>
+        </div>
+    </div>
+
+    <div class="prompt-box">
+        <div class="prompt-label">🏷️ Marka Entegrasyonu (Brand Placement)</div>
+        <pre>• "MOBIVA COLLECTIBLES" — Designer Toy kutularında marka logosu ve "LIMITED EDITION" yazısı
+• "MOBIVA" Neon Tabela — Gaming videosundaki odanın duvarında beyaz neon ışık
+• "MOBIVA" Logo Sticker — Monitör bezelinde ve mousepad üzerinde watermark
+• Tüm marka yerleştirmeleri sahneye organik şekilde entegre edildi — reklam hissi vermeden</pre>
+    </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+    <p>© 2026 Armağan Öztürk — <a href="/">armione.vercel.app</a></p>
+    <div class="footer-tools">ChatGPT · Kling AI VIDEO 3.0 Omni · CapCut for PC</div>
+</footer>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script src="case-study-prompts.js"></script>
+<script>
+// Populate prompt boxes from data
+document.addEventListener('DOMContentLoaded', () => {
+    const map = {
+        'pre-gta-system': PROMPTS.gta_system,
+        'pre-gta-tpl1': PROMPTS.gta_template_sercan,
+        'pre-gta-tpl2': PROMPTS.gta_template_mehmet,
+        'pre-toy-system': PROMPTS.toy_system,
+        'pre-nostalgia-system': PROMPTS.nostalgia_system,
+        'pre-nostalgia-tpl': PROMPTS.nostalgia_template,
+        'pre-coach-gpt': PROMPTS.coach_gpt_system,
+        'pre-coach-tpl-s': PROMPTS.coach_gpt_sercan,
+        'pre-coach-tpl-m': PROMPTS.coach_gpt_mehmet,
+        'pre-coach-kling': PROMPTS.coach_kling,
+        'pre-gaming-gpt1': PROMPTS.gaming_gpt_gamer,
+        'pre-gaming-gpt2': PROMPTS.gaming_gpt_fight,
+        'pre-gaming-kling1': PROMPTS.gaming_kling_gamer,
+        'pre-gaming-kling2': PROMPTS.gaming_kling_fight,
+        'pre-trex-gpt': PROMPTS.trex_gpt_system,
+        'pre-trex-tpl': PROMPTS.trex_gpt_template,
+        'pre-trex-kling': PROMPTS.trex_kling,
+        'pre-trex-omni': PROMPTS.trex_omni,
+    };
+    for (const [id, text] of Object.entries(map)) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+    }
+    // Toy template note
+    const toyNote = document.getElementById('toy-template-note');
+    if (toyNote) toyNote.textContent = PROMPTS.toy_template_note;
+});
+</script>
+<script src="case-study.js"></script>
+</body>
+</html>
